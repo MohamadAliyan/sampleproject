@@ -8,9 +8,6 @@ namespace Util
     public static class CacheKeys
     {
         public static string GetAll => "GetAll";
-        public static string GetAllPettyCashProfileStatus => "GetAllPettyCashProfileStatus";
-        public static string GetAllTreasuryStatus => "GetAllTreasuryStatus";
-        public static string GetProtectionComponentData => "GetProtectionComponentData";
         public static string Entry => "_Entry";
         public static string CallbackEntry => "_Callback";
         public static string CallbackMessage => "_CallbackMessage";
@@ -21,10 +18,8 @@ namespace Util
         public static string Ticks => "_Ticks";
         public static string CancelMsg => "_CancelMsg";
         public static string CancelTokenSource => "_CancelTokenSource";
-        public static string GetTreasuryShiftCitvasionReport => "_GetTreasuryShiftCitvasionReport";
-        public static string PanisaTerminal => "PanisaTerminal";
-        public static string PanisaTerminalItems => "PanisaTerminalItems";
-        
+
+
 
 
     }
