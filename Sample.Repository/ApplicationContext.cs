@@ -19,6 +19,8 @@ namespace Sample.Repository
         {
             base.OnModelCreating(modelBuilder);
             new InvoiceMap(modelBuilder.Entity<Invoice>());
+            new InvoiceDetailMap(modelBuilder.Entity<InvoiceDetail>());
+   
             
 
          

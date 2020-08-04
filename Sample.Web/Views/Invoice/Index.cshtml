@@ -1,0 +1,74 @@
+﻿@using Util
+@model Sample.Web.Models.InvoiceViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<form class="form-horizontal" asp-action="Index" role="form">
+    <div class="text-center">
+ 
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label"> شماره فاکتور</label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Number" class="form-control" />
+
+            </div>
+            <label class="col-sm-2 form-control-label"> تاریخ</label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="PersianDateTime" class="form-control datepicker" autocomplete="off" />
+
+            </div>
+        </div>
+        <div class="form-group row ">
+
+            <button type="button" class="btn btn-primary add-previous-btn  mr-2">
+                <i class="fa fa-plus"></i>
+            </button>
+
+        </div>
+
+       <div class="table-responsive">
+            <table id="myTable" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>کالا</th>
+                    <th>تعداد</th>
+                    <th>قیمت</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+    <input type="submit" value="ارسال"/>
+    
+</form>
+
+    @section Scripts
+{
+            <script>
+                $(document).ready(function () {
+                    var i = 0;
+                    $('.add-previous-btn').click(function () {
+                        $('#myTable tbody').append('<tr>' +
+                            '<td>' +
+                            '<input type="text" name="InvoiceDetails[' + i + '].productId" class="form-control" />' +
+                            '</td>' +
+                            '<td>' +
+                            '<input type="text" name="InvoiceDetails[' + i + '].count" class="form-control" />' +
+                            '</td>' +
+                            '<td>' +
+                            '<input type="text" name="InvoiceDetails[' + i + '].price" class="form-control" />' +
+                            '</td>' +
+                            '</tr>');
+                        i++
+                    });
+                });
+            </script>
+        }

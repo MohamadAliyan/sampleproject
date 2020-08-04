@@ -19,9 +19,9 @@ namespace Sample.Service
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Sample.Repository")));
             ResolveAllTypes(services, ServiceLifetime.Transient, typeof(IService<,>), "Service");
-            ResolveAllTypes(services, ServiceLifetime.Scoped, typeof(IRepository<>), "Repository");
+            ResolveAllTypes(services, ServiceLifetime.Transient, typeof(IRepository<>), "Repository");
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient(typeof(IService<,>), typeof(Service<,>));
 
         }
