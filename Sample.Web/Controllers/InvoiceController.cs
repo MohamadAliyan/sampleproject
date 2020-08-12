@@ -20,17 +20,22 @@ namespace Sample.Web.Controllers
             _logger = logger;
             _invoiceService = invoiceService;
         }
-
-        public IActionResult Index()
+        public IActionResult Index(int pageNumber = 1)
+        {
+            var list = _invoiceService.GetAll(pageNumber);
+          
+            return View( list);
+        }
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(InvoiceViewModel model)
+        public IActionResult Create(InvoiceViewModel model)
         {
             _invoiceService.Insert(model);
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
     }

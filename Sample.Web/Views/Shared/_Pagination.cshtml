@@ -1,0 +1,106 @@
+﻿@model Sample.Web.Models.Pagination
+
+<style>
+</style>
+@if (Model.TotalPageCount > 1)
+{
+    <hr/>
+    <div class="float-left border p-1">تعداد کل : <b>@Model.TotalCount</b> مورد</div>
+    <div>
+        <nav aria-label="Page navigation example" style="direction: ltr">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(Model.CurrentPageNumber == Model.TotalPageCount ? "disabled" : "")">
+                    <a class="page-link" href="@(Model.CurrentPageNumber == Model.TotalPageCount ? "" : Model.Url + "/" + (Model.CurrentPageNumber + 1) + Model.QueryString )">بعدی</a>
+                </li>
+                @if (Model.TotalPageCount < 10)
+                {
+                    for (var i = Model.TotalPageCount; i > 0; i--)
+                    {
+                        if (i == Model.CurrentPageNumber)
+                        {
+                            <li class="page-item selected"><a class="page-link" href="#">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                        }
+                    }
+                }
+                else
+                {
+                    if (Model.CurrentPageNumber <= 5)
+                    {
+                        for (var i = Model.TotalPageCount; i > Model.TotalPageCount - 2; i--)
+                        {
+                            <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                        }
+                        @:...
+                        for (var i = 7; i > 0; i--)
+                        {
+                            if (i == Model.CurrentPageNumber)
+                            {
+                                <li class="page-item selected" style=""><a class="page-link" href="#">@i</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                            }
+                        }
+
+                    }
+                    else if (Model.CurrentPageNumber >= Model.TotalPageCount - 5)
+                    {
+                        for (var i = Model.TotalPageCount; i > Model.TotalPageCount - 7; i--)
+                        {
+                            if (i == Model.CurrentPageNumber)
+                            {
+                                <li class="page-item selected" style=""><a class="page-link">@i</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                            }
+                        }
+                        @:...
+
+                        for (var i = 2; i > 0; i--)
+                        {
+                            <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                        }
+                    }
+                    else
+                    {
+                        for (var i = Model.TotalPageCount; i > Model.TotalPageCount - 2; i--)
+                        {
+                            <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                        }
+                        @:...
+
+                        for (var i = Model.CurrentPageNumber + 2; i > Model.CurrentPageNumber - 2; i--)
+                        {
+                            if (i == Model.CurrentPageNumber)
+                            {
+                                <li class="page-item selected" style=""><a class="page-link">@i</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i)+ Model.QueryString)">@i</a></li>
+                            }
+                        }
+                        @:...
+
+                        for (var i = 2; i > 0; i--)
+                        {
+                            <li class="page-item"><a class="page-link" href="@(Model.Url + "/" + (i) + Model.QueryString)">@i</a></li>
+                        }
+                    }
+                }
+                <li class="page-item @(Model.CurrentPageNumber == 1 ? "disabled" : "") ">
+                    <a class="page-link" href="@(Model.CurrentPageNumber == 1 ? "" : Model.Url + "/" + (Model.CurrentPageNumber - 1)+ Model.QueryString)" tabindex=" -1">قبلی</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+}
